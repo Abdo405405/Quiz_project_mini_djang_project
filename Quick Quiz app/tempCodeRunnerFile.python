@@ -1,0 +1,14 @@
+from random import shuffle 
+
+
+
+lst = [{"id" :1 , "answer" :"Hi"} ,{"id" :2 , "answer" :"Hi"} ,{"id" :5 , "answer" :"Hi"}]
+user = {"5":["Hi"] , "1":["Hi"]}
+
+
+for id , ans in user.items() : 
+    for l in  lst: 
+        if str(l["id"]) ==  id : 
+            if ans[0] == l["answer"]  : 
+                print("Yes")
+ 

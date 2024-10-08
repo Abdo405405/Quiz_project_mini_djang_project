@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الاختيار المتعدد</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            text-align: right; /* محاذاة النص إلى اليمين */
+            direction: rtl;    /* اتجاه النص من اليمين إلى اليسار */
+        }
+        .form-check {
+            text-align: right; /* محاذاة النص إلى اليمين */
+        }
+        .form-check-label {
+            display: inline-block; /* يضمن محاذاة التسمية مع الزر */
+            margin-right: 1.25em;  /* مسافة بين الزر والنص */
+            vertical-align: middle; /* محاذاة رأسية للنص مع الزر */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+                <h2>اختبار السنة النبوية</h2>
+            </div>
+
+            <form class="login-form" method="POST" action="{% url 'quizapp:result'%}">
+                {% csrf_token %}
+
+            <div class="card-body">
+                <!-- Question 1 -->
+                {%for num,title,answers,id in questions %}
+                <div class="quiz-question mb-4">
+                    <h5>{{num}}. {{title}}</h5>
+
+                    {% for ans in answers %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="{{id}}" id="q1a" value="{{ans}}"  style="position: absolute; right: 10px; margin-left: 5em;" >
+                        <label class="form-check-label" for="q1a">{{ans}}</label>
+                    </div>
+                    {%endfor%}
+       
+                </div>
+                {%endfor%}
+
+                <!-- Submit button -->
+                <button id="submit-btn" class="btn btn-success">إرسال الاختبار</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+</html>
